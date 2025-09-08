@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Maduu & Co. – Premium Fashion</title>
+
+    <meta name="description"
+        content="Discover unique T-shirts, phone cases, and more at Maison Maduu & Co. Shop our special Halloween and other collections. Elevate your style with our premium designs.">
+    <meta property="og:title" content="Maison Maduu & Co. – Premium Fashion">
+    <meta property="og:description"
+        content="Discover unique T-shirts, phone cases, and more at Maison Maduu & Co. Shop our special Halloween and other collections. Elevate your style with our premium designs.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="hero-1.230Z.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #F8F8F8; /* Softer off-white */
+            --secondary-bg: #EAEAEA; /* Light gray for cards/elements */
+            --primary-text: #333333; /* Dark charcoal for primary text */
+            --secondary-text: #888888; /* Medium gray for secondary text */
+            --accent-color: #A0B9C9; /* Soothing blue-gray accent */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: var(--primary-bg);
+            color: var(--primary-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6; /* Improved readability */
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary-bg);
+            border-bottom: 1px solid var(--secondary-bg); /* Softer border */
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem; /* Slightly smaller for balance */
+            letter-spacing: 4px; /* Adjusted letter spacing */
+            color: var(--primary-text);
+            z-index: 10;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Consistent padding */
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 8px; /* Soft edges for hero */
+        }
+
+        .carousel-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-text); /* Dark background for images */
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85; /* Slightly softer image overlay */
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(51, 51, 51, 0.6); /* Darker, softer button background */
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            cursor: pointer;
+            z-index: 5;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem; /* Slightly larger icon */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .carousel-btn:hover {
+            background: rgba(51, 51, 51, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-bg); /* Dot border matches primary bg */
+            background: rgba(255, 255, 255, 0.5); /* Semi-transparent dot */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dots button.active {
+            background: var(--accent-color); /* Accent colored active dot */
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem; /* Adjusted title size */
+            margin: 4rem 0 2.5rem; /* More vertical space */
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-text);
+        }
+
+        .filter-container {
+            text-align: center;
+            margin-bottom: 2.5rem; /* More space below filter */
+        }
+
+        .filter-container label {
+            font-weight: 500;
+            margin-right: 0.75rem;
+            color: var(--primary-text);
+            font-size: 1.1rem;
+        }
+
+        .filter-container select {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--secondary-text); /* Softer border */
+            border-radius: 6px;
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            cursor: pointer;
+            appearance: none; /* Remove default arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2C197.387L154.193%2C64.587c-5.074-5.074-11.821-7.859-19.033-7.859c-7.212%2C0-13.959%2C2.785-19.033%2C7.859L5.454%2C197.387c-10.088%2C10.088-9.988%2C26.545%2C0.25%2C36.879c10.237%2C10.334%2C26.795%2C10.435%2C36.883%2C0.249l112.56-112.56l112.56%2C112.56c10.088%2C10.088%2C26.545%2C9.988%2C36.879%2C-0.25C297.026%2C223.932%2C297.127%2C207.47%2C287%2C197.387z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.8em;
+            padding-right: 2.5rem; /* Space for the custom arrow */
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem; /* Increased gap */
+            padding-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added transform for a subtle lift */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--primary-text);
+            border-radius: 10px; /* More rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Soft initial shadow */
+        }
+
+        .card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-bottom: 1px solid var(--primary-bg); /* Separator for image */
+        }
+
+        .card h3 {
+            margin: 0;
+            padding: 1.2rem 1rem; /* More vertical padding */
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Subtle lift effect */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+        }
+
+        .buy-now {
+            background-color: var(--primary-text);
+            color: var(--primary-bg);
+            border: none;
+            padding: 0.9rem 1.8rem;
+            margin: 1rem 0 1.5rem; /* Adjusted margin */
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 8px; /* Softer button corners */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+        }
+
+        .buy-now:hover {
+            background-color: var(--accent-color); /* Accent color on hover */
+            transform: translateY(-2px); /* Slight button press effect */
+        }
+
+        .card a {
+            text-decoration: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.8rem;
+                padding: 0.75rem 1rem;
+                letter-spacing: 3px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin: 3rem 0 2rem;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+                padding: 0.5rem;
+            }
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
+
+            .carousel-dots button {
+                width: 10px;
+                height: 10px;
+            }
+
+            .grid {
+                gap: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+                padding: 1rem 0.75rem;
+            }
+
+            .buy-now {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            .filter-container label {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin: 2.5rem 0 1.5rem;
+            }
+            .hero {
+                height: 40vh;
+                border-radius: 0; /* Remove border-radius on small screens for full width */
+            }
+            .filter-container {
+                margin-bottom: 1.5rem;
+            }
+            .grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+                gap: 1rem;
+            }
+            .card {
+                border-radius: 0; /* Remove border-radius for full width on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner">MAISON MADUU & CO.</header>
+    <main>
+        <section id="landing" class="page active">
+            <div class="hero">
+                <div class="carousel-container" id="carousel">
+                    <div class="carousel-slide"><img src="la.258.jpeg" alt="Minimalist fashion statement piece"></div>
+                    <div class="carousel-slide"><img src="bandGtee.169.jpeg" alt="Casual street style t-shirt design"></div>
+                    <div class="carousel-slide"><img src="acc1.658.jpeg" alt="Trendy fashion accessories and caps"></div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Previous slide" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next" aria-label="Next slide" onclick="moveSlide(1)">&#10095;</button>
+                <div class="carousel-dots" id="carousel-dots" role="tablist"></div>
+            </div>
+
+            <h2 class="section-title">Shop by Collection</h2>
+            <div class="grid" id="collection-grid">
+                <a class="card"
+                    href="https://www.zazzle.com/collections/spooky_halloween_designs_party_collection-119902847661224461"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="Hal.973.jpeg" alt="Spooky Halloween collection for parties and events">
+                    <h3>Halloween Collection</h3>
+                </a>
+
+                <a class="card" href="https://www.zazzle.com/collections/aesthetic_phone_cases-119435871688361294"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="Mobile Phone .png" alt="Aesthetic mobile phone case designs">
+                    <h3>Mobile Case Collection</h3>
+                </a>
+
+                <a class="card" href="https://www.zazzle.com/collections/t_shirts_collection-119557517673108295"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="tee.181.jpeg" alt="Stylish T-shirt collection for everyday wear">
+                    <h3>T-shirt Collection</h3>
+                </a>
+
+                <a class="card" href="YOUR_ZAZZLE_ACCENT_PRODUCTS_LINK_HERE" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="acc.240.jpeg" alt="Unique general fashion products and accessories">
+                    <h3>Other Products</h3>
+                </a>
+            </div>
+
+            <h2 class="section-title">Shop Our Products</h2>
+            <div class="filter-container">
+                <label for="category-select">Filter by category:</label>
+                <select id="category-select">
+                    <option value="all">All Products</option>
+                    <option value="halloween">Halloween</option>
+                    <option value="mobile-cases">Mobile Cases</option>
+                    <option value="t-shirts">T-shirts</option>
+                    <option value="other-products">Other Products</option>
+                </select>
+            </div>
+            <div class="grid" id="product-grid">
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        const SPACE_ID = '3kzp8l0rmzg8';
+        const ACCESS_TOKEN = 'qojt8Jci3zUAcg_V9N48ApirgePwqMX9th7MFdpeFyc';
+        const CONTENT_TYPE_ID = 'pageProduct';
+
+        // --- Carousel Logic ---
+        let slideIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('carousel-dots');
+
+        function createDots() {
+            if (!dotsContainer || slides.length === 0) return;
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('role', 'tab');
+                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                dot.onclick = () => {
+                    slideIndex = index;
+                    updateCarousel();
+                };
+                dotsContainer.appendChild(dot);
+            });
+            updateDots();
+        }
+
+        function updateDots() {
+            if (!dotsContainer) return;
+            dotsContainer.querySelectorAll('button').forEach((dot, index) => {
+                dot.classList.toggle('active', index === slideIndex);
+                dot.setAttribute('aria-selected', index === slideIndex);
+            });
+        }
+
+        function updateCarousel() {
+            if (!carousel) return;
+            carousel.style.transform = `translateX(${-slideIndex * 100}%)`;
+            updateDots();
+        }
+
+        function moveSlide(n) {
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        let autoSlideInterval = null;
+
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => moveSlide(1), 5000);
+        }
+
+        // --- Product Fetching and Rendering Logic ---
+        let allProducts = null;
+
+        async function fetchProducts() {
+            const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=${CONTENT_TYPE_ID}&include=1`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data from Contentful:', error);
+                return null;
+            }
+        }
+
+        function renderProducts(category = "all") {
+            const productGrid = document.getElementById("product-grid");
+            productGrid.innerHTML = "";
+
+            if (!allProducts || !allProducts.items || !allProducts.includes || !allProducts.includes.Asset) {
+                productGrid.innerHTML = '<p>No products found. Please check your Contentful setup.</p>';
+                return;
+            }
+
+            const assets = allProducts.includes.Asset.reduce((acc, asset) => {
+                acc[asset.sys.id] = asset;
+                return acc;
+            }, {});
+
+            const filteredProducts = allProducts.items.filter(item => {
+                const text = `${item.fields.name || ""} ${item.fields.description || ""}`.toLowerCase();
+                let categoryField = "other-products";
+                if (text.includes("halloween")) {
+                    categoryField = "halloween";
+                } else if (text.includes("mobile") || text.includes("phone case")) {
+                    categoryField = "mobile-cases";
+                } else if (text.includes("t-shirt") || text.includes("tee")) {
+                    categoryField = "t-shirts";
+                }
+                
+                return category === "all" || categoryField === category;
+            });
+
+            if (filteredProducts.length === 0) {
+                productGrid.innerHTML = '<p>No products in this category.</p>';
+                return;
+            }
+
+            filteredProducts.forEach(item => {
+                const fields = item.fields;
+                const imageId = fields.image ? fields.image.sys.id : null;
+                const imageUrl = imageId && assets[imageId] ? assets[imageId].fields.file.url : "";
+                const zazzleLink = fields.url || fields.zazzleLink || "#";
+
+                if (imageUrl) {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+
+                    card.innerHTML = `
+                        <img src="https:${imageUrl}" alt="${fields.name || 'Product Image'}">
+                        <h3>${fields.name || 'New Product'}</h3>
+                        <a href="${zazzleLink}" target="_blank" rel="noopener noreferrer">
+                            <button class="buy-now">Buy Now</button>
+                        </a>
+                    `;
+                    productGrid.appendChild(card);
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            createDots();
+            startAutoSlide();
+
+            if (carousel) {
+                carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+                carousel.addEventListener('mouseleave', startAutoSlide);
+            }
+
+            allProducts = await fetchProducts();
+
+            if (allProducts) {
+                renderProducts("all");
+                const categorySelect = document.getElementById("category-select");
+                if (categorySelect) {
+                    categorySelect.addEventListener("change", (event) => {
+                        renderProducts(event.target.value);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
